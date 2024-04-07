@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {CompareService} from "./compare.service";
+import {TurfEffort} from "./turf-effort";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'comparehelper';
+
+  turfEffort?: TurfEffort;
+
+
+  constructor(private compareService: CompareService) {
+  }
+
+  callBackend() {
+    this.compareService.getTurfEffort().subscribe( (turfEffort: TurfEffort) => {
+      this.turfEffort = turfEffort;
+    });
+  }
 }
