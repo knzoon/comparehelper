@@ -11,6 +11,8 @@ export class AppComponent {
 
   turfEffort?: TurfEffort;
 
+  displayManageGroupDialog: boolean = false;
+
 
   constructor(private compareService: CompareService) {
   }
@@ -19,5 +21,9 @@ export class AppComponent {
     this.compareService.getTurfEffort().subscribe( (turfEffort: TurfEffort) => {
       this.turfEffort = turfEffort;
     });
+  }
+
+  showManageGroupDialog() {
+    this.displayManageGroupDialog = true;
   }
 }

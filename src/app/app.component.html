@@ -7,3 +7,9 @@
 <div *ngIf="turfEffort">
   Användare: {{turfEffort.username}} Nedlagd tid: {{turfEffort.timeSpent}}
 </div>
+
+<div>
+  <p-button id="manageGroup" label="Administrera grupp" (click)="showManageGroupDialog()"></p-button>
+</div>
+
+<app-manage-group-dialog [(displayDialog)]="displayManageGroupDialog" ></app-manage-group-dialog>

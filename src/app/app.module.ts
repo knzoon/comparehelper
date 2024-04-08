@@ -6,17 +6,25 @@ import { AppComponent } from './app.component';
 import {ButtonModule} from "primeng/button";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { ManageGroupDialogComponent } from './manage-group-dialog/manage-group-dialog.component';
+import {DialogModule} from "primeng/dialog";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {ListboxModule} from "primeng/listbox";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ManageGroupDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule,
+    AutoCompleteModule,
+    ListboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
