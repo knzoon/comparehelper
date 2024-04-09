@@ -1,15 +1,19 @@
 <div class="pageHeader">
   CompareHelper
 </div>
-<div>
-  <p-button id="testa" icon="pi pi-search" label="Testa anropa backend" (click)="callBackend()"></p-button>
-</div>
-<div *ngIf="turfEffort">
-  Användare: {{turfEffort.username}} Nedlagd tid: {{turfEffort.timeSpent}}
+<!--<div>-->
+<!--  <p-button id="testa" icon="pi pi-search" label="Testa anropa backend" (click)="callBackend()"></p-button>-->
+<!--</div>-->
+<!--<div *ngIf="turfEffort">-->
+<!--  Användare: {{turfEffort.username}} Nedlagd tid: {{turfEffort.timeSpent}}-->
+<!--</div>-->
+
+<div *ngFor="let user of group">
+  <div>{{user.username}}</div>
 </div>
 
 <div>
   <p-button id="manageGroup" label="Administrera grupp" (click)="showManageGroupDialog()"></p-button>
 </div>
 
-<app-manage-group-dialog [(displayDialog)]="displayManageGroupDialog" ></app-manage-group-dialog>
+<app-manage-group-dialog [(displayDialog)]="displayManageGroupDialog" [usersToSave]="groupToModify" (usersToSaveChange)="handleManagedGroup($event)" ></app-manage-group-dialog>

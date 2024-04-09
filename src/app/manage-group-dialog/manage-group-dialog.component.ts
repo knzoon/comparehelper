@@ -9,13 +9,18 @@ import {CompareService} from "../compare.service";
 })
 export class ManageGroupDialogComponent {
   @Input() displayDialog: boolean = false;
-  @Output()  displayDialogChange = new EventEmitter<boolean>();
+  @Output()  displayDialogChange= new EventEmitter<boolean>();
+
+  @Input() usersToSave: User[] = [];
+  @Output() usersToSaveChange= new EventEmitter<User[]>();
+
 
   selectedAddUser?: User;
   suggestedUsers: User[] = [];
 
-  usersToSave: User[] = [];
   selectedSaveUser?: User;
+
+  readonly lsGroupKey: string = "group";
 
   constructor(private compareService: CompareService) {}
 
@@ -49,7 +54,10 @@ export class ManageGroupDialogComponent {
   }
 
   saveGroup(): void {
-    this.usersToSave = [];
+    const jsonData: string = JSON.stringify(this.usersToSave);
+    localStorage.setItem(this.lsGroupKey, jsonData);
+    this.usersToSaveChange.emit(this.usersToSave);
+
     this.displayDialog = false;
   }
 
