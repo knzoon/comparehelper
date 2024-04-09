@@ -13,8 +13,8 @@ export class CompareService {
 
   constructor(private http: HttpClient) { }
 
-  getTurfEffort() : Observable<TurfEffort>  {
-    const url = `${this.baseURL}turfeffort?username=praktikus`;
+  getTurfEffort(username: string) : Observable<TurfEffort>  {
+    const url = `${this.baseURL}turfeffort` + "?username=" + username;
     return this.http.get<TurfEffort>(url);
   }
 

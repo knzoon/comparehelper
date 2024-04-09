@@ -10,6 +10,7 @@ import { ManageGroupDialogComponent } from './manage-group-dialog/manage-group-d
 import {DialogModule} from "primeng/dialog";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {ListboxModule} from "primeng/listbox";
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ListboxModule} from "primeng/listbox";
     ButtonModule,
     DialogModule,
     AutoCompleteModule,
-    ListboxModule
+    ListboxModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
