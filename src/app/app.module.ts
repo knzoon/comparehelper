@@ -11,6 +11,8 @@ import {DialogModule} from "primeng/dialog";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {ListboxModule} from "primeng/listbox";
 import {CheckboxModule} from "primeng/checkbox";
+import {CardModule} from "primeng/card";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {CheckboxModule} from "primeng/checkbox";
     DialogModule,
     AutoCompleteModule,
     ListboxModule,
-    CheckboxModule
+    CheckboxModule,
+    CardModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

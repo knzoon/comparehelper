@@ -1,22 +1,52 @@
 <div class="pageHeader">
   CompareHelper
 </div>
+<div class="flex column-gap-6">
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center justify-content-between bg-blue-50">
+        <div class="text-lg font-semibold m-3">
+             Användare att jämföra
+        </div>
+        <div class="align-items-center m-3">
+          <p-button id="manageGroup" icon="pi pi-user-edit" (click)="showManageGroupDialog()"></p-button>
+        </div>
+      </div>
+    </ng-template>
+    <div>
+      <div *ngFor="let user of group" class="field-checkbox">
+        <p-checkbox [label]="user.username" name="usergroup" [value]="user" [(ngModel)]="selectedUsers"></p-checkbox>
+      </div>
+    </div>
+  </p-card>
 
-<div *ngFor="let user of group">
-<!--  <div>{{user.username}}</div>-->
-  <p-checkbox [label]="user.username" name="usergroup" [value]="user" [(ngModel)]="selectedUsers"></p-checkbox>
-</div>
-
-<div>
-  <p-button id="manageGroup" label="Administrera grupp" (click)="showManageGroupDialog()"></p-button>
-</div>
-<div>
-  <h2>Turf effort</h2>
-</div>
-<div *ngFor="let effort of selectedEffort()">
-  <div>
-    Användare: {{effort.username}} Nedlagd tid: {{effort.timeSpent}} Poäng: {{effort.points}} Takes: {{effort.takes}}
-  </div>
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center justify-content-between bg-blue-50">
+        <div class="text-lg font-semibold m-3">
+          Ansträngning
+        </div>
+      </div>
+    </ng-template>
+    <p-table [value]="selectedEffort()">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Användare</th>
+          <th>Nedlagd tid</th>
+          <th>Poäng</th>
+          <th>Takes</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-effort>
+        <tr>
+          <td>{{effort.username}}</td>
+          <td>{{effort.timeSpent}}</td>
+          <td>{{effort.points}}</td>
+          <td>{{effort.takes}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
 </div>
 
 <app-manage-group-dialog [(displayDialog)]="displayManageGroupDialog" [usersToSave]="groupToModify" (usersToSaveChange)="handleManagedGroup($event)" ></app-manage-group-dialog>
