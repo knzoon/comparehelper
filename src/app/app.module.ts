@@ -13,6 +13,7 @@ import {ListboxModule} from "primeng/listbox";
 import {CheckboxModule} from "primeng/checkbox";
 import {CardModule} from "primeng/card";
 import {TableModule} from "primeng/table";
+import {ChartModule} from "primeng/chart";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {TableModule} from "primeng/table";
     ListboxModule,
     CheckboxModule,
     CardModule,
-    TableModule
+    TableModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
