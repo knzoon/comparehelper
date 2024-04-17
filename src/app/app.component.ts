@@ -81,12 +81,26 @@ export class AppComponent implements OnInit{
 
   selectedCumulative(): GraphData {
     console.info("running selectedCumulative()");
+    let labelArr: string[] = ['1'];
+    if (this.datasets.length > 0) {
+      // console.info(this.generateLabelArr(5));
+      labelArr = this.generateLabelArr(this.datasets[0].data.length);
+    }
     return {
-      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'],
+      labels: labelArr,
       datasets: this.datasets.filter(dataset => this.selectedUsers.some(user => dataset.label === user.username))
     };
   }
 
+  private generateLabelArr(size: number): string[] {
+    let label: string[] = [];
+
+    for (let i = 1; i < size + 1; i++) {
+      label.push(i.toString());
+    }
+
+    return label;
+  }
 
   selectedEffort(): TurfEffort[] {
     console.info("running selectedEffort()");
