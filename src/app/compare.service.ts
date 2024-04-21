@@ -4,6 +4,8 @@ import {delay, Observable, of} from "rxjs";
 import {TurfEffort} from "./turf-effort";
 import {User} from "./user";
 import {GraphDataset} from "./graph-dataset";
+import {UserInfoFromApi} from "./user-info-from-api";
+import {SearchId} from "./search-id";
 
 @Injectable({
   providedIn: 'root'
@@ -53,4 +55,14 @@ export class CompareService {
     //   data: []
     // });
   }
+
+  getUserInfoFromTurfApi(users: User[]): Observable<UserInfoFromApi[]> {
+    const url: string = "https://api.turfgame.com/unstable/users";
+    let searchParams: SearchId[];
+    searchParams = users.map((user) => {
+      return {id: user.id}
+    });
+    return this.http.post<UserInfoFromApi[]>(url, searchParams);
+  }
+
 }

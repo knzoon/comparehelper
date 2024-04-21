@@ -13,12 +13,64 @@
         </div>
       </div>
     </ng-template>
-    <div>
-      <div *ngFor="let user of group" class="field-checkbox">
-        <p-checkbox [label]="user.username" name="usergroup" [value]="user" [(ngModel)]="selectedUsers" (onChange)="handleUserselection()"></p-checkbox>
-      </div>
+    <div class="grid">
+      <ng-container *ngFor="let userinfo of groupDecorated">
+        <div class="col-1">
+          <p-checkbox name="usergroup" [value]="userinfo.user" [(ngModel)]="selectedUsers" (onChange)="handleUserselection()"></p-checkbox>
+        </div>
+        <div class="col-7">
+          <span class="white-space-nowrap">{{userinfo.userInfo.name}} {{userinfo.userInfo.country}}</span>
+        </div>
+        <div class="col-2 text-right">
+          +{{userinfo.userInfo.pointsPerHour}}
+        </div>
+        <div class="col-2 text-right">
+          {{userinfo.userInfo.points}}
+        </div>
+      </ng-container>
     </div>
   </p-card>
+<!--  <div>-->
+<!--    <p-button label="Testa" (onClick)="testCallToTurfApi()"></p-button>-->
+<!--  </div>-->
+<!--  <p-card>-->
+<!--    <ng-template pTemplate="header">-->
+<!--      <div class="flex align-items-center justify-content-between bg-blue-50">-->
+<!--        <div class="text-lg font-semibold m-3">-->
+<!--          Testyta-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ng-template>-->
+<!--    <div class="grid">-->
+<!--&lt;!&ndash;      rad 1&ndash;&gt;-->
+<!--      <div class="col-1">-->
+<!--        <p-checkbox name="apagroup" [value]="apaOneUser" [(ngModel)]="selectedApaUsers"></p-checkbox>-->
+<!--      </div>-->
+<!--      <div class="col-7">-->
+<!--        <span class="white-space-nowrap">praktikus se</span>-->
+<!--      </div>-->
+<!--      <div class="col-2 text-right">-->
+<!--        +97-->
+<!--      </div>-->
+<!--      <div class="col-2 text-right">-->
+<!--        37316-->
+<!--      </div>-->
+<!--&lt;!&ndash;      rad 2&ndash;&gt;-->
+<!--      <div class="col-1">-->
+<!--        <p-checkbox name="apagroup" [value]="apaTwoUser" [(ngModel)]="selectedApaUsers"></p-checkbox>-->
+<!--      </div>-->
+<!--      <div class="col-7">-->
+<!--        <span class="white-space-nowrap">cotten se</span>-->
+<!--      </div>-->
+<!--      <div class="col-2 text-right">-->
+<!--        +63-->
+<!--      </div>-->
+<!--      <div class="col-2 text-right">-->
+<!--        107597-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </p-card>-->
+
 
   <p-card>
     <ng-template pTemplate="header">
@@ -41,8 +93,8 @@
         <tr>
           <td>{{effort.username}}</td>
           <td>{{effort.timeSpent}}</td>
-          <td>{{effort.points}}</td>
-          <td>{{effort.takes}}</td>
+          <td class="text-right">{{effort.points}}</td>
+          <td class="text-right">{{effort.takes}}</td>
         </tr>
       </ng-template>
     </p-table>

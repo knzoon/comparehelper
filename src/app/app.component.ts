@@ -4,6 +4,8 @@ import {TurfEffort} from "./turf-effort";
 import {User} from "./user";
 import {GraphData} from "./graph-data";
 import {GraphDataset} from "./graph-dataset";
+import {UserInfoFromApi} from "./user-info-from-api";
+import {UserDecorated} from "./user-decorated";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,13 @@ export class AppComponent implements OnInit{
   group: User[] = [];
   groupToModify: User[] = [];
 
+  groupDecorated: UserDecorated[] = [];
+
   selectedUsers: User[] = [];
+
+  apaOneUser: User = {id:666, username:"praktikus"};
+  apaTwoUser: User = {id:42, username:"cotten"};
+  selectedApaUsers: User[] = [];
 
   displayManageGroupDialog: boolean = false;
 
@@ -44,6 +52,7 @@ export class AppComponent implements OnInit{
       this.selectedUsers = users.slice();
       this.populateEffort();
       this.populateCumulative();
+      this.populateDecoratedUsers();
     }
 
     this.optionsCumulative = {
@@ -57,6 +66,18 @@ export class AppComponent implements OnInit{
         }
       }
     };
+  }
+
+  private populateDecoratedUsers(): void {
+    this.groupDecorated = [];
+
+    this.compareService.getUserInfoFromTurfApi(this.group).subscribe((userinfo: UserInfoFromApi[]) => {
+      this.groupDecorated = userinfo.map((ui) => {
+        let matchingUser: User = this.group.find((u) => u.id === ui.id) ?? {id:666, username: 'unknown'};
+        return {userInfo : ui, user: matchingUser}
+      }).sort((a, b) => b.userInfo.points - a.userInfo.points);
+
+    });
   }
 
   private populateCumulative(): void {
@@ -115,10 +136,19 @@ export class AppComponent implements OnInit{
     this.group = modifiedGroup;
     this.groupToModify = this.group.slice();
     this.populateEffort();
+    this.populateCumulative();
+    this.populateDecoratedUsers();
   }
 
   handleUserselection() {
     this.selectedTurfEfforts = this.selectedEffort();
     this.dataCumulative = this.selectedCumulative();
+  }
+
+  testCallToTurfApi() {
+    this.compareService.getUserInfoFromTurfApi(this.group).subscribe((userinfo: UserInfoFromApi[]) => {
+      console.info("length: " + userinfo.length);
+      console.info("username: " + userinfo[0].name + " country: " + userinfo[0].country);
+    });
   }
 }
