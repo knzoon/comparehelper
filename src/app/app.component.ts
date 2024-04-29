@@ -145,6 +145,14 @@ export class AppComponent implements OnInit{
     this.dataCumulative = this.selectedCumulative();
   }
 
+  getFlagClass(code: string) : string {
+    let correctCode = code;
+    if (code === "uk") {
+      correctCode = "gb";
+    }
+    return "fi fi-" + correctCode;
+  }
+
   testCallToTurfApi() {
     this.compareService.getUserInfoFromTurfApi(this.group).subscribe((userinfo: UserInfoFromApi[]) => {
       console.info("length: " + userinfo.length);

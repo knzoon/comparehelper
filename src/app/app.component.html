@@ -19,7 +19,7 @@
           <p-checkbox name="usergroup" [value]="userinfo.user" [(ngModel)]="selectedUsers" (onChange)="handleUserselection()"></p-checkbox>
         </div>
         <div class="col-7">
-          <span class="white-space-nowrap">{{userinfo.userInfo.name}} {{userinfo.userInfo.country}}</span>
+          <span class="white-space-nowrap">{{userinfo.userInfo.name}} <span [class]="getFlagClass(userinfo.userInfo.country)"></span> </span>
         </div>
         <div class="col-2 text-right">
           +{{userinfo.userInfo.pointsPerHour}}
@@ -30,47 +30,6 @@
       </ng-container>
     </div>
   </p-card>
-<!--  <div>-->
-<!--    <p-button label="Testa" (onClick)="testCallToTurfApi()"></p-button>-->
-<!--  </div>-->
-<!--  <p-card>-->
-<!--    <ng-template pTemplate="header">-->
-<!--      <div class="flex align-items-center justify-content-between bg-blue-50">-->
-<!--        <div class="text-lg font-semibold m-3">-->
-<!--          Testyta-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </ng-template>-->
-<!--    <div class="grid">-->
-<!--&lt;!&ndash;      rad 1&ndash;&gt;-->
-<!--      <div class="col-1">-->
-<!--        <p-checkbox name="apagroup" [value]="apaOneUser" [(ngModel)]="selectedApaUsers"></p-checkbox>-->
-<!--      </div>-->
-<!--      <div class="col-7">-->
-<!--        <span class="white-space-nowrap">praktikus se</span>-->
-<!--      </div>-->
-<!--      <div class="col-2 text-right">-->
-<!--        +97-->
-<!--      </div>-->
-<!--      <div class="col-2 text-right">-->
-<!--        37316-->
-<!--      </div>-->
-<!--&lt;!&ndash;      rad 2&ndash;&gt;-->
-<!--      <div class="col-1">-->
-<!--        <p-checkbox name="apagroup" [value]="apaTwoUser" [(ngModel)]="selectedApaUsers"></p-checkbox>-->
-<!--      </div>-->
-<!--      <div class="col-7">-->
-<!--        <span class="white-space-nowrap">cotten se</span>-->
-<!--      </div>-->
-<!--      <div class="col-2 text-right">-->
-<!--        +63-->
-<!--      </div>-->
-<!--      <div class="col-2 text-right">-->
-<!--        107597-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </p-card>-->
-
 
   <p-card>
     <ng-template pTemplate="header">
