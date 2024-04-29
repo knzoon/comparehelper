@@ -21,10 +21,6 @@ export class AppComponent implements OnInit{
 
   selectedUsers: User[] = [];
 
-  apaOneUser: User = {id:666, username:"praktikus"};
-  apaTwoUser: User = {id:42, username:"cotten"};
-  selectedApaUsers: User[] = [];
-
   displayManageGroupDialog: boolean = false;
 
   readonly lsGroupKey: string = "group";
@@ -50,9 +46,9 @@ export class AppComponent implements OnInit{
       this.group = users;
       this.groupToModify = users.slice();
       this.selectedUsers = users.slice();
+      this.populateDecoratedUsers();
       this.populateEffort();
       this.populateCumulative();
-      this.populateDecoratedUsers();
     }
 
     this.optionsCumulative = {
@@ -69,7 +65,9 @@ export class AppComponent implements OnInit{
   }
 
   private populateDecoratedUsers(): void {
-    this.groupDecorated = [];
+    this.groupDecorated = this.group.map((u) => {
+      return {user: u, userInfo: undefined};
+    });
 
     this.compareService.getUserInfoFromTurfApi(this.group).subscribe((userinfo: UserInfoFromApi[]) => {
       this.groupDecorated = userinfo.map((ui) => {
@@ -135,9 +133,9 @@ export class AppComponent implements OnInit{
   handleManagedGroup(modifiedGroup: User[]) {
     this.group = modifiedGroup;
     this.groupToModify = this.group.slice();
+    this.populateDecoratedUsers();
     this.populateEffort();
     this.populateCumulative();
-    this.populateDecoratedUsers();
   }
 
   handleUserselection() {
@@ -151,12 +149,5 @@ export class AppComponent implements OnInit{
       correctCode = "gb";
     }
     return "fi fi-" + correctCode;
-  }
-
-  testCallToTurfApi() {
-    this.compareService.getUserInfoFromTurfApi(this.group).subscribe((userinfo: UserInfoFromApi[]) => {
-      console.info("length: " + userinfo.length);
-      console.info("username: " + userinfo[0].name + " country: " + userinfo[0].country);
-    });
   }
 }

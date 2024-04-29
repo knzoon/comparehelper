@@ -14,19 +14,28 @@
       </div>
     </ng-template>
     <div class="grid">
-      <ng-container *ngFor="let userinfo of groupDecorated">
+      <ng-container *ngFor="let userDecorated of groupDecorated">
         <div class="col-1">
-          <p-checkbox name="usergroup" [value]="userinfo.user" [(ngModel)]="selectedUsers" (onChange)="handleUserselection()"></p-checkbox>
+          <p-checkbox name="usergroup" [value]="userDecorated.user" [(ngModel)]="selectedUsers" (onChange)="handleUserselection()"></p-checkbox>
         </div>
-        <div class="col-7">
-          <span class="white-space-nowrap">{{userinfo.userInfo.name}} <span [class]="getFlagClass(userinfo.userInfo.country)"></span> </span>
-        </div>
-        <div class="col-2 text-right">
-          +{{userinfo.userInfo.pointsPerHour}}
-        </div>
-        <div class="col-2 text-right">
-          {{userinfo.userInfo.points}}
-        </div>
+        <ng-container *ngTemplateOutlet="userDecorated.userInfo?decorated:undecorated;context: userDecorated">
+        </ng-container>
+        <ng-template #decorated let-userInfo=userInfo>
+          <div class="col-7">
+            <span class="white-space-nowrap">{{userInfo.name}} <span [class]="getFlagClass(userInfo.country)"></span> </span>
+          </div>
+          <div class="col-2 text-right">
+            +{{userInfo.pointsPerHour}}
+          </div>
+          <div class="col-2 text-right">
+            {{userInfo.points}}
+          </div>
+        </ng-template>
+        <ng-template #undecorated let-user=user>
+          <div class="col-11">
+            {{user.username}}
+          </div>
+        </ng-template>
       </ng-container>
     </div>
   </p-card>
