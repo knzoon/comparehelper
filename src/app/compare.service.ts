@@ -57,7 +57,8 @@ export class CompareService {
   }
 
   getUserInfoFromTurfApi(users: User[]): Observable<UserInfoFromApi[]> {
-    const url: string = "/unstable/users";
+    //const url: string = "/unstable/users";
+    const url: string = "/api/userinfo";
     let searchParams: SearchId[];
     searchParams = users.map((user) => {
       return {id: user.id}
