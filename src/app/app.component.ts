@@ -150,4 +150,9 @@ export class AppComponent implements OnInit{
     }
     return "fi fi-" + correctCode;
   }
+
+  getFormattedPercentage(total: number, part: number): string {
+    let apa: number = Math.round(part / total * 100);
+    return `(${apa}%)`;
+  }
 }

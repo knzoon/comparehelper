@@ -54,6 +54,7 @@
           <th>Användare</th>
           <th>Nedlagd tid</th>
           <th>Poäng</th>
+          <th>Från pph</th>
           <th>Takes</th>
         </tr>
       </ng-template>
@@ -62,6 +63,7 @@
           <td>{{effort.username}}</td>
           <td>{{effort.timeSpent}}</td>
           <td class="text-right">{{effort.points}}</td>
+          <td class="text-right">{{effort.pointsByPph}} {{getFormattedPercentage(effort.points, effort.pointsByPph)}}</td>
           <td class="text-right">{{effort.takes}}</td>
         </tr>
       </ng-template>

@@ -5,4 +5,5 @@ export interface TurfEffort {
   takes: number;
   routes: number;
   takesInRoutes: number;
+  pointsByPph: number;
 }
