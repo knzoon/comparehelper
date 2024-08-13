@@ -107,7 +107,7 @@ export class AppComponent implements OnInit{
     }
     return {
       labels: labelArr,
-      datasets: this.datasets.filter(dataset => this.selectedUsers.some(user => dataset.label === user.username))
+      datasets: this.datasets.filter(dataset => this.selectedUsers.some(user => dataset.label === user.username)).sort((a, b) => b.totalPoints - a.totalPoints)
     };
   }
 
