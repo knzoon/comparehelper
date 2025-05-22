@@ -6,6 +6,7 @@ import {User} from "./user";
 import {GraphDataset} from "./graph-dataset";
 import {UserInfoFromApi} from "./user-info-from-api";
 import {SearchId} from "./search-id";
+import {DailyGraphDataset} from "./daily-graph-dataset";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,51 @@ export class CompareService {
   getUsers(searchStr: string): Observable<User[]> {
     const url = `${this.baseURL}allusers` + "?searchString=" +  searchStr;
     return this.http.get<User[]>(url);
+  }
+
+  getDailyPoints(username: string) : Observable<DailyGraphDataset[]> {
+    const url = `${this.baseURL}daily` + "?username=" + username;
+    return this.http.get<DailyGraphDataset[]>(url);
+
+    // if (username === "praktikus") {
+    //   return of(
+    //     [
+    //             {
+    //               label: "Takepoint praktikus",
+    //               data: [50, 75, 25],
+    //               stack: "praktikus",
+    //               totalPoints: 300
+    //             },
+    //             {
+    //               label: "Pph praktikus",
+    //               data: [25, 50, 75],
+    //               stack: "praktikus",
+    //               totalPoints: 300
+    //             }
+    //           ]
+    //   );
+    // }
+    //
+    // if (username === "WhiteNinja") {
+    //   return of(
+    //     [
+    //       {
+    //         label: "Takepoint WhiteNinja",
+    //         data: [40, 30, 20],
+    //         stack: "WhiteNinja",
+    //         totalPoints: 150
+    //       },
+    //       {
+    //         label: "Pph WhiteNinja",
+    //         data: [30, 20, 10],
+    //         stack: "WhiteNinja",
+    //         totalPoints: 150
+    //       }
+    //     ]
+    //   );
+    // }
+    //
+    // return of([]);
   }
 
   getCumulativePoints(username: string) : Observable<GraphDataset> {

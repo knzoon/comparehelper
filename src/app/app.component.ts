@@ -6,6 +6,8 @@ import {GraphData} from "./graph-data";
 import {GraphDataset} from "./graph-dataset";
 import {UserInfoFromApi} from "./user-info-from-api";
 import {UserDecorated} from "./user-decorated";
+import {DailyGraphData} from "./daily-graph-data";
+import {DailyGraphDataset} from "./daily-graph-dataset";
 
 @Component({
   selector: 'app-root',
@@ -36,6 +38,12 @@ export class AppComponent implements OnInit{
   datasets: GraphDataset[] = [];
   // end ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+  // All related to chart daily
+  optionsDaily: any;
+  dataDaily: DailyGraphData = {labels: [], datasets: []};
+  allDailyDatasets: DailyGraphDataset[] = [];
+  // end ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
   constructor(private compareService: CompareService) {
   }
 
@@ -49,6 +57,7 @@ export class AppComponent implements OnInit{
       this.populateDecoratedUsers();
       this.populateEffort();
       this.populateCumulative();
+      this.populateDaily();
     }
 
     this.optionsCumulative = {
@@ -62,6 +71,24 @@ export class AppComponent implements OnInit{
         }
       }
     };
+
+    this.optionsDaily = {
+      scales: {
+        x: {
+          stacked: true
+        },
+        y: {
+          stacked: true
+        }
+      },
+      indexAxis: 'y',
+      plugins: {
+        colors: {
+          forceOverride: true
+        }
+      }
+    };
+
   }
 
   private populateDecoratedUsers(): void {
@@ -88,18 +115,8 @@ export class AppComponent implements OnInit{
     }
   }
 
-  private populateEffort(): void {
-    this.turfEfforts = [];
-    for (let i = 0; i < this.group.length; i++) {
-      this.compareService.getTurfEffort(this.group[i].username).subscribe((turfEffort: TurfEffort) => {
-        this.turfEfforts.splice(i, 0, turfEffort);
-        this.selectedTurfEfforts = this.selectedEffort();
-      });
-    }
-  }
-
   selectedCumulative(): GraphData {
-    console.info("running selectedCumulative()");
+//    console.info("running selectedCumulative()");
     let labelArr: string[] = ['1'];
     if (this.datasets.length > 0) {
       // console.info(this.generateLabelArr(5));
@@ -111,6 +128,33 @@ export class AppComponent implements OnInit{
     };
   }
 
+  private populateDaily(): void {
+    this.allDailyDatasets = [];
+    for (let i = 0; i < this.group.length; i++) {
+      this.compareService.getDailyPoints(this.group[i].username).subscribe((datasetsForUSer: DailyGraphDataset[]) => {
+        this.allDailyDatasets.splice(2 * i, 0, datasetsForUSer[0]);
+        this.allDailyDatasets.splice(2 * i + 1, 0, datasetsForUSer[1]);
+        this.dataDaily = this.selectedDaily();
+      });
+    }
+  }
+
+  private selectedDaily(): DailyGraphData {
+//    console.info("running selectedDaily()");
+    let labelArr: string[] = ['1'];
+    if (this.allDailyDatasets.length > 0) {
+      labelArr = this.generateLabelArr(this.allDailyDatasets[0].data.length);
+    }
+
+    let filterdDatasets = this.allDailyDatasets.filter(dataset => this.selectedUsers.some(user => dataset.stack === user.username)).sort((a, b) => b.totalPoints - a.totalPoints);
+
+    return {
+      labels: labelArr,
+      datasets: filterdDatasets
+    };
+  }
+
+
   private generateLabelArr(size: number): string[] {
     let label: string[] = [];
 
@@ -121,8 +165,18 @@ export class AppComponent implements OnInit{
     return label;
   }
 
+  private populateEffort(): void {
+    this.turfEfforts = [];
+    for (let i = 0; i < this.group.length; i++) {
+      this.compareService.getTurfEffort(this.group[i].username).subscribe((turfEffort: TurfEffort) => {
+        this.turfEfforts.splice(i, 0, turfEffort);
+        this.selectedTurfEfforts = this.selectedEffort();
+      });
+    }
+  }
+
   selectedEffort(): TurfEffort[] {
-    console.info("running selectedEffort()");
+//    console.info("running selectedEffort()");
     return this.turfEfforts.filter(effort => this.selectedUsers.some(user => effort.username === user.username)).sort((a, b) => b.points - a.points);
   }
 
@@ -136,11 +190,13 @@ export class AppComponent implements OnInit{
     this.populateDecoratedUsers();
     this.populateEffort();
     this.populateCumulative();
+    this.populateDaily();
   }
 
   handleUserselection() {
     this.selectedTurfEfforts = this.selectedEffort();
     this.dataCumulative = this.selectedCumulative();
+    this.dataDaily = this.selectedDaily();
   }
 
   getFlagClass(code: string) : string {

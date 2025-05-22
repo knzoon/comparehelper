@@ -69,6 +69,7 @@
       </ng-template>
     </p-table>
   </p-card>
+
   <p-card>
     <ng-template pTemplate="header">
       <div class="flex align-items-center justify-content-between bg-blue-50">
@@ -79,6 +80,18 @@
     </ng-template>
     <p-chart type="line" [data]="dataCumulative" [options]="optionsCumulative" width="90vw" height="60vh"></p-chart>
   </p-card>
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center justify-content-between bg-blue-50">
+        <div class="text-lg font-semibold m-3">
+          Poäng dag för dag
+        </div>
+      </div>
+    </ng-template>
+    <p-chart type="bar" [data]="dataDaily" [options]="optionsDaily" width="90vw" height="200vh"></p-chart>
+  </p-card>
+
 </div>
 
 <app-manage-group-dialog [(displayDialog)]="displayManageGroupDialog" [usersToSave]="groupToModify" (usersToSaveChange)="handleManagedGroup($event)" ></app-manage-group-dialog>
