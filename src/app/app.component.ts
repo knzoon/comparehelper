@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {CompareService} from "./compare.service";
 import {TurfEffort} from "./turf-effort";
 import {User} from "./user";
-import {GraphData} from "./graph-data";
-import {GraphDataset} from "./graph-dataset";
+import {CumulativeGraphData} from "./cumulative-graph-data";
+import {CumulativeGraphDataset} from "./cumulative-graph-dataset";
 import {UserInfoFromApi} from "./user-info-from-api";
 import {UserDecorated} from "./user-decorated";
 import {DailyGraphData} from "./daily-graph-data";
 import {DailyGraphDataset} from "./daily-graph-dataset";
+import {GraphDatasetCollection} from "./graph-dataset-collection";
 
 @Component({
   selector: 'app-root',
@@ -34,8 +35,8 @@ export class AppComponent implements OnInit{
 
   // All related to chart cumulative
   optionsCumulative: any;
-  dataCumulative: GraphData = {labels: [], datasets: []};
-  datasets: GraphDataset[] = [];
+  dataCumulative: CumulativeGraphData = {labels: [], datasets: []};
+  allCumulativeDatasets: CumulativeGraphDataset[] = [];
   // end ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   // All related to chart daily
@@ -56,8 +57,7 @@ export class AppComponent implements OnInit{
       this.selectedUsers = users.slice();
       this.populateDecoratedUsers();
       this.populateEffort();
-      this.populateCumulative();
-      this.populateDaily();
+      this.populateGraphData();
     }
 
     this.optionsCumulative = {
@@ -105,38 +105,32 @@ export class AppComponent implements OnInit{
     });
   }
 
-  private populateCumulative(): void {
-    this.datasets = [];
-    for (let i = 0; i < this.group.length; i++) {
-      this.compareService.getCumulativePoints(this.group[i].username).subscribe((dataset: GraphDataset) => {
-        this.datasets.splice(i, 0, dataset);
-        this.dataCumulative = this.selectedCumulative();
-      });
-    }
-  }
-
-  selectedCumulative(): GraphData {
-//    console.info("running selectedCumulative()");
-    let labelArr: string[] = ['1'];
-    if (this.datasets.length > 0) {
-      // console.info(this.generateLabelArr(5));
-      labelArr = this.generateLabelArr(this.datasets[0].data.length);
-    }
-    return {
-      labels: labelArr,
-      datasets: this.datasets.filter(dataset => this.selectedUsers.some(user => dataset.label === user.username)).sort((a, b) => b.totalPoints - a.totalPoints)
-    };
-  }
-
-  private populateDaily(): void {
+  private populateGraphData(): void {
+    this.allCumulativeDatasets = [];
     this.allDailyDatasets = [];
     for (let i = 0; i < this.group.length; i++) {
-      this.compareService.getDailyPoints(this.group[i].username).subscribe((datasetsForUSer: DailyGraphDataset[]) => {
-        this.allDailyDatasets.splice(2 * i, 0, datasetsForUSer[0]);
-        this.allDailyDatasets.splice(2 * i + 1, 0, datasetsForUSer[1]);
+      this.compareService.getCombinedGraphdata(this.group[i].username).subscribe((datasetCollection: GraphDatasetCollection) => {
+        this.allCumulativeDatasets.splice(i, 0, datasetCollection.cumulative);
+        this.dataCumulative = this.selectedCumulative();
+        this.allDailyDatasets.splice(2 * i, 0, datasetCollection.daily[0]);
+        this.allDailyDatasets.splice(2 * i + 1, 0, datasetCollection.daily[1]);
         this.dataDaily = this.selectedDaily();
       });
     }
+
+  }
+
+  selectedCumulative(): CumulativeGraphData {
+//    console.info("running selectedCumulative()");
+    let labelArr: string[] = ['1'];
+    if (this.allCumulativeDatasets.length > 0) {
+      // console.info(this.generateLabelArr(5));
+      labelArr = this.generateLabelArr(this.allCumulativeDatasets[0].data.length);
+    }
+    return {
+      labels: labelArr,
+      datasets: this.allCumulativeDatasets.filter(dataset => this.selectedUsers.some(user => dataset.label === user.username)).sort((a, b) => b.totalPoints - a.totalPoints)
+    };
   }
 
   private selectedDaily(): DailyGraphData {
@@ -189,8 +183,7 @@ export class AppComponent implements OnInit{
     this.groupToModify = this.group.slice();
     this.populateDecoratedUsers();
     this.populateEffort();
-    this.populateCumulative();
-    this.populateDaily();
+    this.populateGraphData();
   }
 
   handleUserselection() {
