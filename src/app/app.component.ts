@@ -84,6 +84,7 @@ export class AppComponent implements OnInit{
       indexAxis: 'y',
       plugins: {
         colors: {
+          enabled: false,
           forceOverride: true
         }
       }
@@ -142,12 +143,31 @@ export class AppComponent implements OnInit{
 
     let filterdDatasets = this.allDailyDatasets.filter(dataset => this.selectedUsers.some(user => dataset.stack === user.username)).sort((a, b) => b.totalPoints - a.totalPoints);
 
+    let coloredDatasets = this.addBarColor(filterdDatasets);
+
     return {
       labels: labelArr,
-      datasets: filterdDatasets
+      datasets: coloredDatasets
     };
   }
 
+  private addBarColor(datasets: DailyGraphDataset[]): DailyGraphDataset[] {
+    const colors = [
+      "#228ed7", "#4ab6ff",
+      "#eb4f70", "#ff7798",
+      "#37acac", "#5fd4d4",
+      "#eb8b2c", "#ffb354",
+      "#8552eb", "#ad7aff",
+      "#ebb942", "#ffe16a",
+      "#b5b7bb", "#dddfe3"];
+
+    for (let i = 0; i < datasets.length; i++) {
+      // console.info(i + " mod 7 = " + i%7);
+      datasets[i].backgroundColor = colors[i%14];
+    }
+
+    return datasets;
+  }
 
   private generateLabelArr(size: number): string[] {
     let label: string[] = [];

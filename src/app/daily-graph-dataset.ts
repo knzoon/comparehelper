@@ -3,4 +3,5 @@ export interface DailyGraphDataset {
   data: number[];
   stack: string;
   totalPoints: number;
+  backgroundColor: string
 }
