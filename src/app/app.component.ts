@@ -27,6 +27,7 @@ export class AppComponent implements OnInit{
   displayManageGroupDialog: boolean = false;
 
   readonly lsGroupKey: string = "group";
+  readonly lsSelectedUserKey: string = "selectedUsers";
 
   // All related to turf effort vvv
   turfEfforts: TurfEffort[] = [];
@@ -49,15 +50,21 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const jsonStringFromStorage: string | null = localStorage.getItem(this.lsGroupKey);
-    if (jsonStringFromStorage) {
-      let users: User[] = JSON.parse(jsonStringFromStorage);
+    const groupJsonStringFromStorage: string | null = localStorage.getItem(this.lsGroupKey);
+    if (groupJsonStringFromStorage) {
+      let users: User[] = JSON.parse(groupJsonStringFromStorage);
       this.group = users;
       this.groupToModify = users.slice();
-      this.selectedUsers = users.slice();
+//      this.selectedUsers = users.slice();
       this.populateDecoratedUsers();
       this.populateEffort();
       this.populateGraphData();
+    }
+
+    const selectedUsersJsonStringFromStorage: string | null = localStorage.getItem(this.lsSelectedUserKey);
+    if (selectedUsersJsonStringFromStorage) {
+      let users: User[] = JSON.parse(selectedUsersJsonStringFromStorage);
+      this.selectedUsers = users.slice();
     }
 
     this.optionsCumulative = {
@@ -155,10 +162,10 @@ export class AppComponent implements OnInit{
     const colors = [
       "#228ed7", "#4ab6ff",
       "#eb4f70", "#ff7798",
-      "#37acac", "#5fd4d4",
       "#eb8b2c", "#ffb354",
-      "#8552eb", "#ad7aff",
       "#ebb942", "#ffe16a",
+      "#37acac", "#5fd4d4",
+      "#8552eb", "#ad7aff",
       "#b5b7bb", "#dddfe3"];
 
     for (let i = 0; i < datasets.length; i++) {
@@ -199,6 +206,7 @@ export class AppComponent implements OnInit{
   }
 
   handleManagedGroup(modifiedGroup: User[]) {
+    this.handleNewAndRemovedUsersInGroup(modifiedGroup);
     this.group = modifiedGroup;
     this.groupToModify = this.group.slice();
     this.populateDecoratedUsers();
@@ -206,7 +214,27 @@ export class AppComponent implements OnInit{
     this.populateGraphData();
   }
 
+  handleNewAndRemovedUsersInGroup(modifiedGroup: User[]) : void {
+    let newUsers: User[] = modifiedGroup.filter(newUser => !this.group.some(user => newUser.username === user.username));
+    // console.info("New users");
+    // newUsers.forEach(user => console.info(user.username));
+    let removedUsers: User[] = this.group.filter(removedUser => !modifiedGroup.some(user => removedUser.username === user.username));
+    // console.info("Removed users");
+    // removedUsers.forEach(user => console.info(user.username));
+    let shouldBeSelected: User[] = this.selectedUsers.filter(notRemoved => !removedUsers.some(user => notRemoved.username === user.username)).concat(newUsers);
+    // console.info("New selected users");
+    // shouldBeSelected.forEach(user => console.info(user.username));
+
+    const jsonData: string = JSON.stringify(shouldBeSelected);
+    localStorage.setItem(this.lsSelectedUserKey, jsonData);
+
+    this.selectedUsers = shouldBeSelected;
+  }
+
   handleUserselection() {
+    const jsonData: string = JSON.stringify(this.selectedUsers);
+    localStorage.setItem(this.lsSelectedUserKey, jsonData);
+
     this.selectedTurfEfforts = this.selectedEffort();
     this.dataCumulative = this.selectedCumulative();
     this.dataDaily = this.selectedDaily();
