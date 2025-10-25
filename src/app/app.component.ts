@@ -26,6 +26,8 @@ export class AppComponent implements OnInit{
 
   displayManageGroupDialog: boolean = false;
 
+  displayTakeoverSummaryDialog: boolean = false;
+
   readonly lsGroupKey: string = "group";
   readonly lsSelectedUserKey: string = "selectedUsers";
 
@@ -251,5 +253,9 @@ export class AppComponent implements OnInit{
   getFormattedPercentage(total: number, part: number): string {
     let apa: number = Math.round(part / total * 100);
     return `(${apa}%)`;
+  }
+
+  showTakeoverSummaryDialog(): void {
+    this.displayTakeoverSummaryDialog = true;
   }
 }

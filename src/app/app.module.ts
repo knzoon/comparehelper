@@ -14,11 +14,13 @@ import {CheckboxModule} from "primeng/checkbox";
 import {CardModule} from "primeng/card";
 import {TableModule} from "primeng/table";
 import {ChartModule} from "primeng/chart";
+import {TakeoverSummaryDialogComponent} from "./takeover-summary-dialog/takeover-summary-dialog.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManageGroupDialogComponent
+    ManageGroupDialogComponent,
+    TakeoverSummaryDialogComponent
   ],
   imports: [
     BrowserModule,
