@@ -1,5 +1,28 @@
-<p-dialog header="Administrera grupp" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '90vw', height: '90vh'}" (onHide)="closeDialog()" >
-  <div>
-    Här kommer listan med takeovers
-  </div>
+<p-dialog header="Zoner tagna under omgång" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '90vw', height: '90vh'}" (onHide)="closeDialog()" >
+  <p-table [value]="takeoverSummary">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Vecka</th>
+        <th>Dag</th>
+        <th>Antal zoner</th>
+        <th>Totalpoäng</th>
+        <th>Poäng tp</th>
+        <th>Poäng pph</th>
+        <th>Zoner kvar</th>
+        <th>Acc pph/th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-summary>
+      <tr>
+        <td class="text-right">{{summary.week}}</td>
+        <td>{{summary.day}}</td>
+        <td class="text-right">{{summary.zones}}</td>
+        <td class="text-right">{{summary.pointsTotal}}</td>
+        <td class="text-right">{{summary.pointsTp}}</td>
+        <td class="text-right">{{summary.pointsPph}}</td>
+        <td class="text-right">{{summary.zonesLeft}}</td>
+        <td class="text-right">{{summary.accumulatingPph}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </p-dialog>

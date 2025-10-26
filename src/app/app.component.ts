@@ -9,6 +9,7 @@ import {UserDecorated} from "./user-decorated";
 import {DailyGraphData} from "./daily-graph-data";
 import {DailyGraphDataset} from "./daily-graph-dataset";
 import {GraphDatasetCollection} from "./graph-dataset-collection";
+import {TakeoverSummaryDay} from "./takeover-summary-day";
 
 @Component({
   selector: 'app-root',
@@ -47,6 +48,9 @@ export class AppComponent implements OnInit{
   dataDaily: DailyGraphData = {labels: [], datasets: []};
   allDailyDatasets: DailyGraphDataset[] = [];
   // end ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  takeoverSummaries : Map<string, TakeoverSummaryDay[]> = new Map();
+  currentTakeoverSummary: TakeoverSummaryDay[] = [];
 
   constructor(private compareService: CompareService) {
   }
@@ -125,6 +129,7 @@ export class AppComponent implements OnInit{
         this.allDailyDatasets.splice(2 * i, 0, datasetCollection.daily[0]);
         this.allDailyDatasets.splice(2 * i + 1, 0, datasetCollection.daily[1]);
         this.dataDaily = this.selectedDaily();
+        this.updateTakeoversummary(this.group[i].username, datasetCollection.takeoverSummaryDaily);
       });
     }
 
@@ -255,7 +260,23 @@ export class AppComponent implements OnInit{
     return `(${apa}%)`;
   }
 
-  showTakeoverSummaryDialog(): void {
+  showTakeoverSummaryDialog(username: string): void {
+    let summary = this.takeoverSummaries.get(username);
+
+    if (summary) {
+      this.currentTakeoverSummary = summary.slice();
+    } else {
+      this.currentTakeoverSummary = [];
+    }
+
     this.displayTakeoverSummaryDialog = true;
+  }
+
+  private updateTakeoversummary(username: string, takeoverSummaryDaily: TakeoverSummaryDay[]) {
+    if (this.takeoverSummaries.has(username)) {
+      this.takeoverSummaries.delete(username);
+    }
+
+    this.takeoverSummaries.set(username, takeoverSummaryDaily);
   }
 }
