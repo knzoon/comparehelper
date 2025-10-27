@@ -12,6 +12,8 @@ export class TakeoverSummaryDialogComponent {
 
   @Input() takeoverSummary: TakeoverSummaryDay[] = [];
 
+  @Input() userId: string = "praktikus";
+
   closeDialog() : void {
     this.displayDialogChange.emit(false);
   }

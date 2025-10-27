@@ -51,6 +51,7 @@ export class AppComponent implements OnInit{
 
   takeoverSummaries : Map<string, TakeoverSummaryDay[]> = new Map();
   currentTakeoverSummary: TakeoverSummaryDay[] = [];
+  currentUserId: string = "";
 
   constructor(private compareService: CompareService) {
   }
@@ -269,6 +270,7 @@ export class AppComponent implements OnInit{
       this.currentTakeoverSummary = [];
     }
 
+    this.currentUserId = username;
     this.displayTakeoverSummaryDialog = true;
   }
 
