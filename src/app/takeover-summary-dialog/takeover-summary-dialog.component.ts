@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TakeoverSummaryDay} from "../takeover-summary-day";
+import {TakeoverSummaryDay} from "../model/takeover-summary-day";
 
 @Component({
   selector: 'app-takeover-summary-dialog',

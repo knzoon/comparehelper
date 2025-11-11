@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {User} from "../user";
+import {User} from "../model/user";
 import {CompareService} from "../compare.service";
 
 @Component({

@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {CompareService} from "./compare.service";
-import {TurfEffort} from "./turf-effort";
-import {User} from "./user";
-import {CumulativeGraphData} from "./cumulative-graph-data";
-import {CumulativeGraphDataset} from "./cumulative-graph-dataset";
-import {UserInfoFromApi} from "./user-info-from-api";
-import {UserDecorated} from "./user-decorated";
-import {DailyGraphData} from "./daily-graph-data";
-import {DailyGraphDataset} from "./daily-graph-dataset";
-import {GraphDatasetCollection} from "./graph-dataset-collection";
-import {TakeoverSummaryDay} from "./takeover-summary-day";
+import {TurfEffort} from "./model/turf-effort";
+import {User} from "./model/user";
+import {CumulativeGraphData} from "./model/cumulative-graph-data";
+import {CumulativeGraphDataset} from "./model/cumulative-graph-dataset";
+import {UserInfoFromApi} from "./model/user-info-from-api";
+import {UserDecorated} from "./model/user-decorated";
+import {DailyGraphData} from "./model/daily-graph-data";
+import {DailyGraphDataset} from "./model/daily-graph-dataset";
+import {GraphDatasetCollection} from "./model/graph-dataset-collection";
+import {TakeoverSummaryDay} from "./model/takeover-summary-day";
 
 @Component({
   selector: 'app-root',

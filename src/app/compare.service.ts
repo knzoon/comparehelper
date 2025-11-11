@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {delay, Observable, of} from "rxjs";
-import {TurfEffort} from "./turf-effort";
-import {User} from "./user";
-import {CumulativeGraphDataset} from "./cumulative-graph-dataset";
-import {UserInfoFromApi} from "./user-info-from-api";
-import {SearchId} from "./search-id";
-import {DailyGraphDataset} from "./daily-graph-dataset";
-import {GraphDatasetCollection} from "./graph-dataset-collection";
+import {TurfEffort} from "./model/turf-effort";
+import {User} from "./model/user";
+import {CumulativeGraphDataset} from "./model/cumulative-graph-dataset";
+import {UserInfoFromApi} from "./model/user-info-from-api";
+import {SearchId} from "./model/search-id";
+import {DailyGraphDataset} from "./model/daily-graph-dataset";
+import {GraphDatasetCollection} from "./model/graph-dataset-collection";
 
 @Injectable({
   providedIn: 'root'
