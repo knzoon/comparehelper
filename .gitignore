@@ -42,3 +42,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/deploy_to_test.sh

@@ -10,6 +10,7 @@ import {DailyGraphData} from "./model/daily-graph-data";
 import {DailyGraphDataset} from "./model/daily-graph-dataset";
 import {GraphDatasetCollection} from "./model/graph-dataset-collection";
 import {TakeoverSummaryDay} from "./model/takeover-summary-day";
+import {Takeover} from "./model/takeover";
 
 @Component({
   selector: 'app-root',
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit{
   takeoverSummaries : Map<string, TakeoverSummaryDay[]> = new Map();
   currentTakeoverSummary: TakeoverSummaryDay[] = [];
   currentUserId: string = "";
+  takeoversInRound: Takeover[][][] = [];
 
   constructor(private compareService: CompareService) {
   }
@@ -271,6 +273,9 @@ export class AppComponent implements OnInit{
     }
 
     this.currentUserId = username;
+    this.compareService.getTakeoversForUser(username).subscribe((takeovers: Takeover[][][]) => {
+      this.takeoversInRound = takeovers.slice();
+    });
     this.displayTakeoverSummaryDialog = true;
   }
 

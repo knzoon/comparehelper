@@ -12,10 +12,10 @@
         <th>Acc pph</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-summary>
+    <ng-template pTemplate="body" let-summary let-index="rowIndex">
       <tr>
         <td class="text-right">{{summary.week}}</td>
-        <td>{{summary.day}}</td>
+        <td (click)="showTakeoverDialog(index)">{{summary.day}}</td>
         <td class="text-right">{{summary.zones}}</td>
         <td class="text-right">{{summary.pointsTotal}}</td>
         <td class="text-right">{{summary.pointsTp}}</td>
@@ -26,3 +26,4 @@
     </ng-template>
   </p-table>
 </p-dialog>
+<app-takeover-dialog [(displayDialog)]="displayTakeoverDialog" [userId]="currentTitle" [takeoversInDay]="currentTakeoversInDay"></app-takeover-dialog>

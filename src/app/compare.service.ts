@@ -8,6 +8,7 @@ import {UserInfoFromApi} from "./model/user-info-from-api";
 import {SearchId} from "./model/search-id";
 import {DailyGraphDataset} from "./model/daily-graph-dataset";
 import {GraphDatasetCollection} from "./model/graph-dataset-collection";
+import {Takeover} from "./model/takeover";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,11 @@ export class CompareService {
   getCombinedGraphdata(username: string) : Observable<GraphDatasetCollection> {
     const url = `${this.baseURL}graphs` + "?username=" + username;
     return this.http.get<GraphDatasetCollection>(url);
+  }
+
+  getTakeoversForUser(username: string) : Observable<Takeover[][][]> {
+    const url = `${this.baseURL}takeover/user/` +  username;
+    return this.http.get<Takeover[][][]>(url);
   }
 
   getUserInfoFromTurfApi(users: User[]): Observable<UserInfoFromApi[]> {
