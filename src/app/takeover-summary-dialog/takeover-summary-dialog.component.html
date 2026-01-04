@@ -1,5 +1,5 @@
 <p-dialog [header]="userId" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '90vw', height: '90vh'}" (onHide)="closeDialog()" >
-  <p-table [value]="takeoverSummary" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '50rem' }">
+  <p-table [value]="takeoverSummary" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '35rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Vecka</th>
@@ -9,7 +9,7 @@
         <th>Poäng tp</th>
         <th>Poäng pph</th>
         <th>Zoner kvar</th>
-        <th>Acc pph</th>
+        <th>Ack pph</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-summary let-index="rowIndex">
