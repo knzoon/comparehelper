@@ -16,13 +16,15 @@ import {TableModule} from "primeng/table";
 import {ChartModule} from "primeng/chart";
 import {TakeoverSummaryDialogComponent} from "./takeover-summary-dialog/takeover-summary-dialog.component";
 import { TakeoverDialogComponent } from './takeover-dialog/takeover-dialog.component';
+import { HelpDialogComponent } from './help-dialog/help-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ManageGroupDialogComponent,
     TakeoverSummaryDialogComponent,
-    TakeoverDialogComponent
+    TakeoverDialogComponent,
+    HelpDialogComponent
   ],
   imports: [
     BrowserModule,

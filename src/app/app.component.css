@@ -6,3 +6,14 @@
  /*    background: gold;
      border: 1px solid black; */
 }
+
+.row {
+  display: flex;
+  flex-flow: row;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.spaced {
+  margin-left: 20px;
+}

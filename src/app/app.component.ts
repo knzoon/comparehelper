@@ -27,8 +27,8 @@ export class AppComponent implements OnInit{
   selectedUsers: User[] = [];
 
   displayManageGroupDialog: boolean = false;
-
   displayTakeoverSummaryDialog: boolean = false;
+  displayHelpModal: boolean = false;
 
   readonly lsGroupKey: string = "group";
   readonly lsSelectedUserKey: string = "selectedUsers";
@@ -286,4 +286,9 @@ export class AppComponent implements OnInit{
 
     this.takeoverSummaries.set(username, takeoverSummaryDaily);
   }
+
+  showHelpModalDialog() {
+    this.displayHelpModal = true;
+  }
+
 }

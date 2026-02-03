@@ -1,0 +1,54 @@
+<p-dialog [header]="title" [(visible)]="displayDialog" [modal]="true" [style]="{width: '75vw'}" [draggable]="false" [resizable]="false" (onHide)="closeDialog()">
+  <h2>Vad är comparehelper</h2>
+  <p>
+    Denna sida är tänkt att underlätta för de som vill jämföra sitt eget Turfande med sina kompisar eller andra turfare.
+    Allt data gäller aktuell omgång och sidan är uppbyggd av fem delar:
+  </p>
+    <ul>
+      <li>En tabell som motsvarar den vy i Turfappen som visar ställningen i Land/Region/Grupp/Liga.</li>
+      <li>En tabell som fokuserar på ansträngning som total nedlagd tidantal takes m m.</li>
+      <li>En graf som visar accumulerad poäng</li>
+      <li>En graf som visar takepoint och pph per dag.</li>
+      <li>En dialog som visar en tabell med summering av tagna zoner per dag. Varje rad kan dessutom öppna upp en dialog som visar dagens tagna zoner</li>
+    </ul>
+  <h2>Välj användare att jämföra</h2>
+  <p>
+    Längst uppe till höger finns en knapp som ser ut så här <p-button icon="pi pi-user-edit"></p-button>
+  </p>
+  <p>
+    Den öppnar upp en dialog där du söker efter användare att läggs till i listan.
+    Användaren läggs till iom att du väljer en användare bland sökresultaten
+    Skulle du vilja ta bort en användare klickar du på krysset i raden i tabellen
+  </p>
+  <h2>Användare att jämföra</h2>
+  <p>
+    Denna tabell motsvarar den vy i Turfappen som visar ställningen i Land/Region/Grupp/Liga.
+    Här med tillägget att den börjar med en checkbox. Den styr vilka användare som ska visas i efterföljande tabeller och grafer.
+  </p>
+  <h2>Ansträngning</h2>
+  <p>
+    Här är det samlat data som avspeglar hur Turfaren tufat under omgången.
+  </p>
+  <p>
+    Nedlagd tid är approximerat genom att mäta tiden mellan tagna zoner givet att det är mindre än 20 minuter mellan tagningarna.
+    Jag har alltså gjort antagandet att vid gå- och cykelTurf så tas det minst en zon var 20:e minut vilket borde vara sant i de flesta fall.
+  </p>
+  <p>
+    En nästan dold funktionalitet är att det går att klicka på användarnamnet i denna tabell och då få upp en dialog
+    som visar en summering av tagna zoner per dag. Genom att klicka på en dag får man en lista av tagna zoner den dagen i en ny dialog.
+    Allt inspirerat av https://frut.zundin.se/
+  </p>
+  <h2>Ackumulerad poäng</h2>
+  <p>
+    Denna graf visar ackumulerad poäng dag för dag. Värt att notera är att en specifik dags ackumulerade värde ökar med tiden så länge det finns zoner som fortfarande levererar pph.
+  </p>
+  <h2>Poäng dag för dag</h2>
+  <p>
+    Denna graf visar två saker samtidigt per stapel. Den första delen är poäng från tagning och den andra delen som har en svagt ljusare färg, visar poängen från pph.
+    Genom att klicka på respektive del visas ett exakt värde
+  </p>
+  <p>
+    Denna tabell kan bli plottrig om allt för många turfare är valda
+  </p>
+</p-dialog>
+

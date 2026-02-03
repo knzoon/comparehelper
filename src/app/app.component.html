@@ -1,5 +1,10 @@
-<div class="pageHeader">
-  CompareHelper
+<div class="row">
+  <div class="pageHeader">
+    CompareHelper
+  </div>
+  <div class="spaced">
+    <p-button icon="pi pi-question" (click)="showHelpModalDialog()"></p-button>
+  </div>
 </div>
 <div class="flex flex-wrap column-gap-4 row-gap-6">
   <p-card>
@@ -96,3 +101,4 @@
 
 <app-manage-group-dialog [(displayDialog)]="displayManageGroupDialog" [usersToSave]="groupToModify" (usersToSaveChange)="handleManagedGroup($event)" ></app-manage-group-dialog>
 <app-takeover-summary-dialog [(displayDialog)]="displayTakeoverSummaryDialog" [takeoverSummary]="currentTakeoverSummary" [userId]="currentUserId" [takeoversInRound]="takeoversInRound"></app-takeover-summary-dialog>
+<app-help-dialog [(displayDialog)]="displayHelpModal"></app-help-dialog>
