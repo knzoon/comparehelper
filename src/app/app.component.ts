@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
   displayManageGroupDialog: boolean = false;
   displayTakeoverSummaryDialog: boolean = false;
   displayHelpModal: boolean = false;
+  displayDonateModal: boolean = false;
 
   readonly lsGroupKey: string = "group";
   readonly lsSelectedUserKey: string = "selectedUsers";
@@ -289,6 +290,10 @@ export class AppComponent implements OnInit{
 
   showHelpModalDialog() {
     this.displayHelpModal = true;
+  }
+
+  showDonateDialog() {
+    this.displayDonateModal = true;
   }
 
 }

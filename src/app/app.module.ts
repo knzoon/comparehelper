@@ -17,6 +17,8 @@ import {ChartModule} from "primeng/chart";
 import {TakeoverSummaryDialogComponent} from "./takeover-summary-dialog/takeover-summary-dialog.component";
 import { TakeoverDialogComponent } from './takeover-dialog/takeover-dialog.component';
 import { HelpDialogComponent } from './help-dialog/help-dialog.component';
+import {TooltipModule} from "primeng/tooltip";
+import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { HelpDialogComponent } from './help-dialog/help-dialog.component';
     ManageGroupDialogComponent,
     TakeoverSummaryDialogComponent,
     TakeoverDialogComponent,
-    HelpDialogComponent
+    HelpDialogComponent,
+    DonateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { HelpDialogComponent } from './help-dialog/help-dialog.component';
     CheckboxModule,
     CardModule,
     TableModule,
-    ChartModule
+    ChartModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
