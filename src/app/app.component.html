@@ -90,29 +90,29 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Användare</th>
-          <th>+1</th>
-          <th>+2</th>
-          <th>+3</th>
-          <th>+4</th>
-          <th>+5</th>
-          <th>+6</th>
-          <th>+7</th>
-          <th>+8</th>
-          <th>+9</th>
+          <th class="text-center">+1</th>
+          <th class="text-center">+2</th>
+          <th class="text-center">+3</th>
+          <th class="text-center">+4</th>
+          <th class="text-center">+5</th>
+          <th class="text-center">+6</th>
+          <th class="text-center">+7</th>
+          <th class="text-center">+8</th>
+          <th class="text-center">+9</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-effort>
         <tr>
           <td>{{effort.username}}</td>
-          <td>{{effort.pphDistribution.plusOne}}</td>
-          <td>{{effort.pphDistribution.plusTwo}}</td>
-          <td>{{effort.pphDistribution.plusThree}}</td>
-          <td>{{effort.pphDistribution.plusFour}}</td>
-          <td>{{effort.pphDistribution.plusFive}}</td>
-          <td>{{effort.pphDistribution.plusSix}}</td>
-          <td>{{effort.pphDistribution.plusSeven}}</td>
-          <td>{{effort.pphDistribution.plusEight}}</td>
-          <td>{{effort.pphDistribution.plusNine}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusOne}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusTwo}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusThree}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusFour}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusFive}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusSix}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusSeven}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusEight}}</td>
+          <td class="text-right">{{effort.pphDistribution.plusNine}}</td>
         </tr>
       </ng-template>
     </p-table>
