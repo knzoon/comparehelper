@@ -1,3 +1,5 @@
+import {PphDistribution} from "./pph-distribution";
+
 export interface TurfEffort {
   username: string;
   timeSpent: string;
@@ -6,4 +8,5 @@ export interface TurfEffort {
   routes: number;
   takesInRoutes: number;
   pointsByPph: number;
+  pphDistribution: PphDistribution;
 }
