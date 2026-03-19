@@ -48,7 +48,7 @@
     </div>
   </p-card>
 
-  <p-card>
+  <p-card [style]="{'max-width': '95vw', overflow: 'auto' }">
     <ng-template pTemplate="header">
       <div class="flex align-items-center justify-content-between bg-blue-50">
         <div class="text-lg font-semibold m-3">
@@ -78,7 +78,7 @@
     </p-table>
   </p-card>
 
-  <p-card>
+  <p-card [style]="{'max-width': '95vw', overflow: 'auto' }">
     <ng-template pTemplate="header">
       <div class="flex align-items-center justify-content-between bg-blue-50">
         <div class="text-lg font-semibold m-3">
@@ -118,7 +118,7 @@
     </p-table>
   </p-card>
 
-  <p-card>
+  <p-card class="max-w-screen overflow-auto">
     <ng-template pTemplate="header">
       <div class="flex align-items-center justify-content-between bg-blue-50">
         <div class="text-lg font-semibold m-3">
@@ -129,7 +129,7 @@
     <p-chart type="line" [data]="dataCumulative" [options]="optionsCumulative" width="90vw" height="60vh"></p-chart>
   </p-card>
 
-  <p-card>
+  <p-card class="max-w-screen overflow-auto">
     <ng-template pTemplate="header">
       <div class="flex align-items-center justify-content-between bg-blue-50">
         <div class="text-lg font-semibold m-3">
