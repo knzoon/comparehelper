@@ -86,36 +86,41 @@
         </div>
       </div>
     </ng-template>
-    <p-table [value]="selectedTurfEfforts">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Användare</th>
-          <th class="text-center">+1</th>
-          <th class="text-center">+2</th>
-          <th class="text-center">+3</th>
-          <th class="text-center">+4</th>
-          <th class="text-center">+5</th>
-          <th class="text-center">+6</th>
-          <th class="text-center">+7</th>
-          <th class="text-center">+8</th>
-          <th class="text-center">+9</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-effort>
-        <tr>
-          <td>{{effort.username}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusOne}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusTwo}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusThree}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusFour}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusFive}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusSix}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusSeven}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusEight}}</td>
-          <td class="text-right">{{effort.pphDistribution.plusNine}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <div>
+      <div class="apa">
+        Antal zoner (antal takes)
+      </div>
+      <p-table [value]="selectedTurfEfforts">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Användare</th>
+            <th class="text-center">+1</th>
+            <th class="text-center">+2</th>
+            <th class="text-center">+3</th>
+            <th class="text-center">+4</th>
+            <th class="text-center">+5</th>
+            <th class="text-center">+6</th>
+            <th class="text-center">+7</th>
+            <th class="text-center">+8</th>
+            <th class="text-center">+9</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-effort>
+          <tr>
+            <td>{{effort.username}}</td>
+            <td class="text-center">{{effort.pphDistribution.plusOne}} ({{effort.pphDistributionAllTakeovers.plusOne}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusTwo}} ({{effort.pphDistributionAllTakeovers.plusTwo}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusThree}} ({{effort.pphDistributionAllTakeovers.plusThree}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusFour}} ({{effort.pphDistributionAllTakeovers.plusFour}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusFive}} ({{effort.pphDistributionAllTakeovers.plusFive}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusSix}} ({{effort.pphDistributionAllTakeovers.plusSix}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusSeven}} ({{effort.pphDistributionAllTakeovers.plusSeven}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusEight}} ({{effort.pphDistributionAllTakeovers.plusEight}})</td>
+            <td class="text-center">{{effort.pphDistribution.plusNine}} ({{effort.pphDistributionAllTakeovers.plusNine}})</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </p-card>
 
   <p-card class="max-w-screen overflow-auto">

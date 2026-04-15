@@ -9,4 +9,5 @@ export interface TurfEffort {
   takesInRoutes: number;
   pointsByPph: number;
   pphDistribution: PphDistribution;
+  pphDistributionAllTakeovers: PphDistribution;
 }
