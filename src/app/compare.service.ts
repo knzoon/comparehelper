@@ -9,6 +9,7 @@ import {SearchId} from "./model/search-id";
 import {DailyGraphDataset} from "./model/daily-graph-dataset";
 import {GraphDatasetCollection} from "./model/graph-dataset-collection";
 import {Takeover} from "./model/takeover";
+import {ZoneTakeoverSummary} from "./model/zone-takeover-summary";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,11 @@ export class CompareService {
   getTakeoversForUser(username: string) : Observable<Takeover[][][]> {
     const url = `${this.baseURL}takeover/user/` +  username;
     return this.http.get<Takeover[][][]>(url);
+  }
+
+  getZoneTakeoverSummary(zoneId: number): Observable<ZoneTakeoverSummary> {
+    const url = `${this.baseURL}takeover/zone/` +  zoneId;
+    return this.http.get<ZoneTakeoverSummary>(url);
   }
 
   getUserInfoFromTurfApi(users: User[]): Observable<UserInfoFromApi[]> {

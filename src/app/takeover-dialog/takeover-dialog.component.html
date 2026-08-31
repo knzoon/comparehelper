@@ -20,7 +20,7 @@
       <ng-template pTemplate="body" let-takeover>
         <tr>
           <td class="text-right">{{takeover.takeoverTime}}</td>
-          <td class="text-left">{{takeover.zoneName}}</td>
+          <td (click)="showZoneSummaryDialog(takeover.zoneName, takeover.zoneId)" class="text-left">{{takeover.zoneName}}</td>
           <td class="text-left">{{takeover.areaName}}</td>
           <td class="text-right">{{takeover.tp}}</td>
           <td class="text-right">{{takeover.pph}}</td>
@@ -36,5 +36,5 @@
     </p-table>
     <div class="bottomSpace"></div>
   </div>
-
 </p-dialog>
+<app-zone-summary-dialog [(displayDialog)]="displayZoneSummaryDialog" [zonename]="currentZonename" [zoneTakeoverSummary]="currentZoneTakeoverSummary"></app-zone-summary-dialog>

@@ -19,6 +19,7 @@ import { TakeoverDialogComponent } from './takeover-dialog/takeover-dialog.compo
 import { HelpDialogComponent } from './help-dialog/help-dialog.component';
 import {TooltipModule} from "primeng/tooltip";
 import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
+import { ZoneSummaryDialogComponent } from './zone-summary-dialog/zone-summary-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
     TakeoverSummaryDialogComponent,
     TakeoverDialogComponent,
     HelpDialogComponent,
-    DonateDialogComponent
+    DonateDialogComponent,
+    ZoneSummaryDialogComponent
   ],
   imports: [
     BrowserModule,

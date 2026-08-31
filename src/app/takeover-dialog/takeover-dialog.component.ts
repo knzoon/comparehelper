@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Takeover} from "../model/takeover";
+import {ZoneTakeoverSummary} from "../model/zone-takeover-summary";
+import {CompareService} from "../compare.service";
 
 @Component({
   selector: 'app-takeover-dialog',
@@ -13,9 +15,26 @@ export class TakeoverDialogComponent {
   @Input() takeoversInDay: Takeover[][] = [];
 
   @Input() userId: string = "praktikus";
+  displayZoneSummaryDialog: boolean = false;
+  currentZonename: string = "";
+  currentZoneTakeoverSummary: ZoneTakeoverSummary = {zoneName: "undefined", areaName: "undefined", tp: 0, pph: 0, takeovers: []};
+
+  constructor(private compareService: CompareService) {
+  }
 
   closeDialog() : void {
     this.displayDialogChange.emit(false);
+  }
+
+  showZoneSummaryDialog(zonename: string, zoneId: number) : void {
+    console.log("zonename: " + zonename);
+    console.log("zoneid: " + zoneId);
+    this.currentZonename = zonename;
+    this.compareService.getZoneTakeoverSummary(zoneId).subscribe((summary: ZoneTakeoverSummary) => {
+        this.currentZoneTakeoverSummary = summary;
+    });
+
+    this.displayZoneSummaryDialog = true;
   }
 
 }

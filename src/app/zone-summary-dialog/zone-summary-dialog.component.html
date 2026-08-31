@@ -1,0 +1,23 @@
+<p-dialog [header]="zonename" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '100vw', height: '70vh'}" (onHide)="closeDialog()" >
+  <div>{{zoneTakeoverSummary.areaName}} {{zoneTakeoverSummary.tp}}p, +{{zoneTakeoverSummary.pph}}</div>
+  <div class="bottomSpace"></div>
+  <p-table [value]="zoneTakeoverSummary.takeovers" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '40rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Tidpunkt</th>
+        <th>Användare</th>
+        <th>Poäng</th>
+        <th>Behållen</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-takeover>
+      <tr>
+        <td class="text-left">{{takeover.takeoverTime}}</td>
+        <td class="text-left">{{takeover.user}}</td>
+        <td class="text-right">{{takeover.points}}</td>
+        <td class="text-right">{{takeover.duration}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</p-dialog>
