@@ -1,0 +1,22 @@
+<p-dialog [header]="areaName" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '100vw', height: '70vh'}" (onHide)="closeDialog()" >
+  <div>{{toplist.areaName}} - {{toplist.nrofZones}} zoner</div>
+  <div class="bottomSpace"></div>
+
+  <p-table [value]="toplist.toplist" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '40rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Användare</th>
+        <th class="text-right">Antal unika</th>
+        <th class="text-right">Procent</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-unique>
+      <tr>
+        <td class="text-left">{{unique.username}}</td>
+        <td class="text-right">{{unique.nrof}}</td>
+        <td class="text-right">{{calculatePercentage(unique.nrof)}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</p-dialog>

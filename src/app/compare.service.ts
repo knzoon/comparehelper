@@ -3,13 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {delay, Observable, of} from "rxjs";
 import {TurfEffort} from "./model/turf-effort";
 import {User} from "./model/user";
-import {CumulativeGraphDataset} from "./model/cumulative-graph-dataset";
 import {UserInfoFromApi} from "./model/user-info-from-api";
 import {SearchId} from "./model/search-id";
-import {DailyGraphDataset} from "./model/daily-graph-dataset";
 import {GraphDatasetCollection} from "./model/graph-dataset-collection";
 import {Takeover} from "./model/takeover";
 import {ZoneTakeoverSummary} from "./model/zone-takeover-summary";
+import {ToplistUniqueUserForArea} from "./model/toplist-unique-user-for-area";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +42,11 @@ export class CompareService {
   getZoneTakeoverSummary(zoneId: number): Observable<ZoneTakeoverSummary> {
     const url = `${this.baseURL}takeover/zone/` +  zoneId;
     return this.http.get<ZoneTakeoverSummary>(url);
+  }
+
+  getToplistUniqueForArea(areaId: number): Observable<ToplistUniqueUserForArea> {
+    const url = `${this.baseURL}takeover/area/` +  areaId;
+    return this.http.get<ToplistUniqueUserForArea>(url)
   }
 
   getUserInfoFromTurfApi(users: User[]): Observable<UserInfoFromApi[]> {

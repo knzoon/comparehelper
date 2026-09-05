@@ -21,7 +21,7 @@
         <tr>
           <td class="text-right">{{takeover.takeoverTime}}</td>
           <td (click)="showZoneSummaryDialog(takeover.zoneName, takeover.zoneId)" class="text-left">{{takeover.zoneName}}</td>
-          <td class="text-left">{{takeover.areaName}}</td>
+          <td (click)="showToplistDialog(takeover.areaName, takeover.areaId)" class="text-left">{{takeover.areaName}}</td>
           <td class="text-right">{{takeover.tp}}</td>
           <td class="text-right">{{takeover.pph}}</td>
           <td class="text-left">{{takeover.activity}}</td>
@@ -38,3 +38,4 @@
   </div>
 </p-dialog>
 <app-zone-summary-dialog [(displayDialog)]="displayZoneSummaryDialog" [zonename]="currentZonename" [zoneTakeoverSummary]="currentZoneTakeoverSummary"></app-zone-summary-dialog>
+<app-toplist-zone-area-dialog [(displayDialog)]="displayToplistAreaDialog" [areaName]="currentAreaname" [toplist]="currentToplist"></app-toplist-zone-area-dialog>
