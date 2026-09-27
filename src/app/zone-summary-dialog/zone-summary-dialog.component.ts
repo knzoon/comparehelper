@@ -11,7 +11,7 @@ export class ZoneSummaryDialogComponent {
   @Output()  displayDialogChange= new EventEmitter<boolean>();
 
   @Input() zonename: string = "Trollhyveln";
-  @Input() zoneTakeoverSummary: ZoneTakeoverSummary = {zoneName: "undefined", areaName: "undefined", tp: 0, pph: 0, takeovers: []};
+  @Input() zoneTakeoverSummary: ZoneTakeoverSummary = {zoneName: "undefined", areaName: "undefined", tp: 0, pph: 0, takeovers: [], totals: []};
 
   closeDialog() : void {
     this.displayDialogChange.emit(false);

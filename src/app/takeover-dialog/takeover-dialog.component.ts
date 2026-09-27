@@ -19,7 +19,7 @@ export class TakeoverDialogComponent {
 
   displayZoneSummaryDialog: boolean = false;
   currentZonename: string = "";
-  currentZoneTakeoverSummary: ZoneTakeoverSummary = {zoneName: "undefined", areaName: "undefined", tp: 0, pph: 0, takeovers: []};
+  currentZoneTakeoverSummary: ZoneTakeoverSummary = {zoneName: "undefined", areaName: "undefined", tp: 0, pph: 0, takeovers: [], totals: []};
 
   displayToplistAreaDialog: boolean = false;
   currentAreaname: string = "";
@@ -34,7 +34,7 @@ export class TakeoverDialogComponent {
 
   showZoneSummaryDialog(zonename: string, zoneId: number) : void {
     this.currentZonename = zonename;
-    this.currentZoneTakeoverSummary = {zoneName: "", areaName: "Hämtar data...", tp: 0, pph: 0, takeovers: []};
+    this.currentZoneTakeoverSummary = {zoneName: "", areaName: "Hämtar data...", tp: 0, pph: 0, takeovers: [], totals: []};
     this.compareService.getZoneTakeoverSummary(zoneId).subscribe((summary: ZoneTakeoverSummary) => {
         this.currentZoneTakeoverSummary = summary;
     });

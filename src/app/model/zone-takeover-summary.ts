@@ -1,4 +1,5 @@
 import {ZoneTakeover} from "./zone-takeover";
+import {ZoneTakeoverTotal} from "./zone-takeover-total";
 
 export interface ZoneTakeoverSummary {
   zoneName: string;
@@ -6,4 +7,5 @@ export interface ZoneTakeoverSummary {
   tp: number;
   pph: number;
   takeovers: ZoneTakeover[];
+  totals: ZoneTakeoverTotal[];
 }
