@@ -2,7 +2,7 @@
   <div>{{zoneTakeoverSummary.areaName}} {{zoneTakeoverSummary.tp}}p, +{{zoneTakeoverSummary.pph}}</div>
   <div class="bottomSpace"></div>
   <div>
-    <h3>Tagningar (Senast först)</h3>
+    <h4>Tagningar (Senast först)</h4>
     <p-table [value]="zoneTakeoverSummary.takeovers" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '40rem' }">
       <ng-template pTemplate="header">
         <tr>
@@ -23,7 +23,7 @@
     </p-table>
   </div>
   <div>
-    <h3>Summering per användare</h3>
+    <h4>Summering per användare</h4>
     <p-table [value]="zoneTakeoverSummary.totals" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '40rem' }">
       <ng-template pTemplate="header">
         <tr>
