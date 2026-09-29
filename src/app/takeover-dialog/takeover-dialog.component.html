@@ -20,8 +20,8 @@
       <ng-template pTemplate="body" let-takeover>
         <tr>
           <td class="text-right">{{takeover.takeoverTime}}</td>
-          <td (click)="showZoneSummaryDialog(takeover.zoneName, takeover.zoneId)" class="text-left">{{takeover.zoneName}}</td>
-          <td (click)="showToplistDialog(takeover.areaName, takeover.areaId)" class="text-left">{{takeover.areaName}}</td>
+          <td class="text-left underline cursor-pointer" (click)="showZoneSummaryDialog(takeover.zoneName, takeover.zoneId)">{{takeover.zoneName}}</td>
+          <td class="text-left underline cursor-pointer"(click)="showToplistDialog(takeover.areaName, takeover.areaId)">{{takeover.areaName}}</td>
           <td class="text-right">{{takeover.tp}}</td>
           <td class="text-right">{{takeover.pph}}</td>
           <td class="text-left">{{takeover.activity}}</td>

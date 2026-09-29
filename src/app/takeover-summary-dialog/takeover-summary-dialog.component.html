@@ -15,7 +15,7 @@
     <ng-template pTemplate="body" let-summary let-index="rowIndex">
       <tr>
         <td class="text-right">{{summary.week}}</td>
-        <td (click)="showTakeoverDialog(index)">{{summary.day}}</td>
+        <td class="underline cursor-pointer" (click)="showTakeoverDialog(index)">{{summary.day}}</td>
         <td class="text-right">{{summary.zones}}</td>
         <td class="text-right">{{summary.pointsTotal}}</td>
         <td class="text-right">{{summary.pointsTp}}</td>

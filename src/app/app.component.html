@@ -68,7 +68,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-effort>
         <tr>
-          <td (click)="showTakeoverSummaryDialog(effort.username)">{{effort.username}}</td>
+          <td class="underline cursor-pointer" (click)="showTakeoverSummaryDialog(effort.username)">{{effort.username}}</td>
           <td>{{effort.timeSpent}}</td>
           <td class="text-right">{{effort.points}}</td>
           <td class="text-right">{{effort.pointsByPph}} {{getFormattedPercentage(effort.points, effort.pointsByPph)}}</td>
