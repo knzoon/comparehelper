@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TakeoverSummaryDay} from "../model/takeover-summary-day";
 import {Takeover} from "../model/takeover";
+import {TakeoversInDay} from "../model/takeovers-in-day";
+import {Route} from "../model/route";
+import {RouteTotal} from "../model/route-total";
 
 @Component({
   selector: 'app-takeover-summary-dialog',
@@ -13,14 +16,15 @@ export class TakeoverSummaryDialogComponent {
 
   @Input() takeoverSummary: TakeoverSummaryDay[] = [];
 
-  @Input() takeoversInRound: Takeover[][][] = [];
+  @Input() takeoversInRound: TakeoversInDay[] = [];
 
   @Input() userId: string = "praktikus";
 
   displayTakeoverDialog: boolean = false;
   currentDayIndex: number = 0;
   currentTitle : string = "";
-  currentTakeoversInDay: Takeover[][] = [];
+  currentTakeoversInDay: Route[] = [];
+  currentRouteTotals: RouteTotal[] = [];
 
   closeDialog() : void {
     this.displayDialogChange.emit(false);
@@ -31,13 +35,22 @@ export class TakeoverSummaryDialogComponent {
     this.currentDayIndex = index;
     this.currentTitle = this.userId + " - Dag " + (this.currentDayIndex + 1);
     this.currentTakeoversInDay = this.getTakeoversInDay(index);
+    this.currentRouteTotals = this.getRouteTotalsInDay(index);
     this.displayTakeoverDialog = true;
   }
 
-  private getTakeoversInDay(index: number) : Takeover[][] {
+  private getTakeoversInDay(index: number) : Route[] {
     console.info("number of days in round = " + this.takeoversInRound.length)
     if (index < this.takeoversInRound.length) {
-      return this.takeoversInRound[index].slice();
+      return this.takeoversInRound[index].routes.slice();
+    }
+
+    return [];
+  }
+
+  private getRouteTotalsInDay(index: number) : RouteTotal[] {
+    if (index < this.takeoversInRound.length) {
+      return this.takeoversInRound[index].routeTotals.slice();
     }
 
     return [];

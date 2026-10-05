@@ -9,6 +9,7 @@ import {GraphDatasetCollection} from "./model/graph-dataset-collection";
 import {Takeover} from "./model/takeover";
 import {ZoneTakeoverSummary} from "./model/zone-takeover-summary";
 import {ToplistUniqueUserForArea} from "./model/toplist-unique-user-for-area";
+import {TakeoversInDay} from "./model/takeovers-in-day";
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,9 @@ export class CompareService {
     return this.http.get<GraphDatasetCollection>(url);
   }
 
-  getTakeoversForUser(username: string) : Observable<Takeover[][][]> {
+  getTakeoversForUser(username: string) : Observable<TakeoversInDay[]> {
     const url = `${this.baseURL}takeover/user/` +  username;
-    return this.http.get<Takeover[][][]>(url);
+    return this.http.get<TakeoversInDay[]>(url);
   }
 
   getZoneTakeoverSummary(zoneId: number): Observable<ZoneTakeoverSummary> {

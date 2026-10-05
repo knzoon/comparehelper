@@ -1,6 +1,31 @@
 <p-dialog [header]="userId" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '100vw', height: '85vh'}" (onHide)="closeDialog()" >
+  <div>
+    <p-table [value]="routeTotals" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Antal zoner</th>
+          <th>Startade</th>
+          <th>Nedlagd tid</th>
+          <th>Totalpoäng</th>
+          <th>Poäng tagning</th>
+          <th>Poäng pph</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-total>
+        <tr>
+          <td class="text-right">{{total.takes}}</td>
+          <td class="text-right">{{total.startTime}}</td>
+          <td class="text-right">{{total.timeSpent}}</td>
+          <td class="text-right">{{total.pointsTotal}}</td>
+          <td class="text-right">{{total.pointsTp}}</td>
+          <td class="text-right">{{total.pointsPph}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="bottomSpace"></div>
   <div *ngFor="let route of takeoversInDay">
-    <p-table [value]="route" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '50rem' }">
+    <p-table [value]="route.route" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'max-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
           <th>Tidpunkt</th>

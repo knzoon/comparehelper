@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Takeover} from "../model/takeover";
 import {ZoneTakeoverSummary} from "../model/zone-takeover-summary";
 import {CompareService} from "../compare.service";
 import {ToplistUniqueUserForArea} from "../model/toplist-unique-user-for-area";
+import {Route} from "../model/route";
+import {RouteTotal} from "../model/route-total";
 
 @Component({
   selector: 'app-takeover-dialog',
@@ -13,8 +14,8 @@ export class TakeoverDialogComponent {
   @Input() displayDialog: boolean = false;
   @Output()  displayDialogChange= new EventEmitter<boolean>();
 
-  @Input() takeoversInDay: Takeover[][] = [];
-
+  @Input() takeoversInDay: Route[] = [];
+  @Input() routeTotals: RouteTotal[] = [];
   @Input() userId: string = "praktikus";
 
   displayZoneSummaryDialog: boolean = false;
